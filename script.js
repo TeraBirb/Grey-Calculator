@@ -27,6 +27,8 @@ assignNum(n7, 7);
 assignNum(n8, 8);
 assignNum(n9, 9);
 
+// Other buttons
+
 decimal.addEventListener('click', () => {
     if (Number.isInteger(current)) {
         curInput.innerHTML += '.';
@@ -43,6 +45,17 @@ backspace.addEventListener('click', () => {
     console.log('computer: ' + computer, '| current: ' + current, '| splitStr: ' + splitStr);
 })
 
+negative.addEventListener('click', () => {
+    splitStr = curInput.innerHTML.split('');
+    if (splitStr[0] == '-') {
+        splitStr[0] = '';
+    } else {
+        splitStr.unshift('-');
+    }
+    curInput.innerHTML = splitStr.join('');
+    current = parseFloat(curInput.innerHTML);
+    console.log('computer: ' + computer, '| current: ' + current, '| splitStr: ' + splitStr);
+})
 
 // Clears: reset external and internal
 
