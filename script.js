@@ -2,7 +2,7 @@ const accInput = document.querySelector('.acc-input');
 const curInput = document.querySelector('.cur-input');
 let computer = [];
 let current;
-let sum;
+let answer;
 let lastOp;
 let splitStr;
 
@@ -26,6 +26,7 @@ assignNum(n6, 6);
 assignNum(n7, 7);
 assignNum(n8, 8);
 assignNum(n9, 9);
+assignNum(n0, 0);
 
 // Other buttons
 
@@ -75,43 +76,70 @@ ce.addEventListener('click', () => {
 
 
 add.addEventListener('click', () => {
-    accInput.innerHTML += curInput.innerHTML + '+';
+    accInput.innerHTML += curInput.innerHTML + ' + ';
     computer.push(current);
     if (computer.length > 1) {
-        sum = computer[0] + computer[1];
-        computer = [sum];
+        answer = computer[0] + computer[1];
+        computer = [answer];
     }
-    lastOp = "add";
+    lastOp = 'add';
     curInput.innerHTML = '';
     current = undefined;
     console.log('computer: ' + computer, '| current: ' + current);
 })
 
 subtract.addEventListener('click', () => {
-    accInput.innerHTML += curInput.innerHTML;
-    accInput.innerHTML += '-';
+    accInput.innerHTML += curInput.innerHTML + ' - ';
+    computer.push(current);
+    if (computer.length > 1) {
+        answer = computer[0] - computer[1];
+        computer = [answer];
+    }
+    lastOp = 'subtract';
     curInput.innerHTML = '';
+    current = undefined;
+    console.log('computer: ' + computer, '| current: ' + current);
 })
 
 multiply.addEventListener('click', () => {
-    accInput.innerHTML += curInput.innerHTML;
-    accInput.innerHTML += '*';
+    accInput.innerHTML += curInput.innerHTML + ' * ';
+    computer.push(current);
+    if (computer.length > 1) {
+        answer = computer[0] * computer[1];
+        computer = [answer];
+    }
+    lastOp = 'multiply';
     curInput.innerHTML = '';
+    current = undefined;
+    console.log('computer: ' + computer, '| current: ' + current);
 })
 
 divide.addEventListener('click', () => {
-    accInput.innerHTML += curInput.innerHTML;
-    accInput.innerHTML += '&#247';
+    accInput.innerHTML += curInput.innerHTML + ' &#247 ';
+    computer.push(current);
+    if (computer.length > 1) {
+        answer = computer[0] / computer[1];
+        computer = [answer];
+    }
+    lastOp = 'divide';
     curInput.innerHTML = '';
+    current = undefined;
+    console.log('computer: ' + computer, '| current: ' + current);
 })
 
 // Equals: resets accumulator, check if current has a value, proceeds to last operation if current has a value, resets current, logs
 
 equals.addEventListener('click', () => {
     accInput.innerHTML = '';
-    if (current) {
-        if (lastOp = "add") {
+    if (current !== undefined) {
+        if (lastOp === "add") {
             computer = parseFloat(computer) + current;
+        } else if (lastOp === "subtract") {
+            computer = parseFloat(computer) - current;
+        } else if (lastOp === "multiply") {
+            computer = parseFloat(computer) * current;
+        } else if (lastOp === "divide") {
+            computer = parseFloat(computer) / current;
         }
     }
     curInput.innerHTML = computer;
