@@ -4,6 +4,7 @@ let computer = [];
 let current;
 let sum;
 let lastOp;
+let splitStr;
 
 
 // Numbers : click event to change external and internal, then logs
@@ -32,6 +33,14 @@ decimal.addEventListener('click', () => {
         current = parseFloat(curInput.innerHTML);
         console.log('computer: ' + computer, '| current: ' + current);
     }
+})
+
+backspace.addEventListener('click', () => {
+    splitStr = curInput.innerHTML.split('');
+    splitStr.pop();
+    curInput.innerHTML = splitStr.join('');
+    current = parseFloat(curInput.innerHTML);
+    console.log('computer: ' + computer, '| current: ' + current, '| splitStr: ' + splitStr);
 })
 
 
