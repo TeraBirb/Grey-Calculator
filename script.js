@@ -1,3 +1,4 @@
+const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 const accInput = document.querySelector('.acc-input');
 const curInput = document.querySelector('.cur-input');
 let computer = [];
@@ -11,11 +12,18 @@ let splitStr;
 
 function assignNum(numVar, num) {
     numVar.addEventListener('click', () => {
+        if ( (w > 500 && curInput.innerHTML.length < 13) ||
+             (w > 768 && curInput.innerHTML.length < 23) ||
+             (w > 950 && curInput.innerHTML.length < 35) ) {
         curInput.innerHTML += num;
         current = parseFloat(curInput.innerHTML);
         console.log('computer: ' + computer, '| current: ' + current);
+        } else {
+            alert('Oops, the characters don\'t fit! Increase window size and refresh or use a big boy calculator.');
+        }
     })
-}
+} 
+
 
 assignNum(n1, 1);
 assignNum(n2, 2);
