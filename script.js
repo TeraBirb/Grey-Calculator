@@ -11,7 +11,7 @@ let lastOp;
 function assignNum(numVar, num) {
     numVar.addEventListener('click', () => {
         curInput.innerHTML += num;
-        current = parseInt(curInput.innerHTML);
+        current = parseFloat(curInput.innerHTML);
         console.log('computer: ' + computer, '| current: ' + current);
     })
 }
@@ -25,6 +25,15 @@ assignNum(n6, 6);
 assignNum(n7, 7);
 assignNum(n8, 8);
 assignNum(n9, 9);
+
+decimal.addEventListener('click', () => {
+    if (Number.isInteger(current)) {
+        curInput.innerHTML += '.';
+        current = parseFloat(curInput.innerHTML);
+        console.log('computer: ' + computer, '| current: ' + current);
+    }
+})
+
 
 // Clears: reset external and internal
 
@@ -40,7 +49,7 @@ ce.addEventListener('click', () => {
 
 })
 
-// Operators: current goes to accumulator, last operation changes, current resets, logs
+// Operators: current goes to accumulator, last operation changes, current pushes to computer array, executes operation, current resets, logs
 
 
 add.addEventListener('click', () => {
@@ -80,7 +89,7 @@ equals.addEventListener('click', () => {
     accInput.innerHTML = '';
     if (current) {
         if (lastOp = "add") {
-            computer = parseInt(computer) + current;
+            computer = parseFloat(computer) + current;
         }
     }
     curInput.innerHTML = computer;
