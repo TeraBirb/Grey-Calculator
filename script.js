@@ -6,7 +6,7 @@ let sum;
 let lastOp;
 
 
-// Numbers
+// Numbers : click event to change external and internal, then logs
 
 function assignNum(numVar, num) {
     numVar.addEventListener('click', () => {
@@ -26,7 +26,7 @@ assignNum(n7, 7);
 assignNum(n8, 8);
 assignNum(n9, 9);
 
-// Clears
+// Clears: reset external and internal
 
 c.addEventListener('click', () => {
     accInput.innerHTML = '';
@@ -40,19 +40,18 @@ ce.addEventListener('click', () => {
 
 })
 
-// Operators
-
+// Operators: current goes to accumulator, last operation changes, current resets, logs
 
 
 add.addEventListener('click', () => {
     accInput.innerHTML += curInput.innerHTML + '+';
-    curInput.innerHTML = '';
     computer.push(current);
     if (computer.length > 1) {
         sum = computer[0] + computer[1];
         computer = [sum];
     }
     lastOp = "add";
+    curInput.innerHTML = '';
     current = undefined;
     console.log('computer: ' + computer, '| current: ' + current);
 })
@@ -75,6 +74,8 @@ divide.addEventListener('click', () => {
     curInput.innerHTML = '';
 })
 
+// Equals: resets accumulator, check if current has a value, proceeds to last operation if current has a value, resets current, logs
+
 equals.addEventListener('click', () => {
     accInput.innerHTML = '';
     if (current) {
@@ -82,6 +83,8 @@ equals.addEventListener('click', () => {
             computer = parseInt(computer) + current;
         }
     }
-    console.log('computer: ' + computer + '| current: ' + current);
     curInput.innerHTML = computer;
+    current = computer;
+    console.log('computer: ' + computer + '| current: ' + current);
+    computer = [];
 })
