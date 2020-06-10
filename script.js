@@ -167,3 +167,5 @@ equals.addEventListener("click", () => {
   console.log("computer: " + computer + "| current: " + current);
   computer = [];
 });
+
+//commit test
