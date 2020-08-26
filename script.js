@@ -150,8 +150,8 @@ divide.addEventListener("click", () => {
 // Equals: resets accumulator, check if current has a value, proceeds to last operation if current has a value, resets current, logs
 
 equals.addEventListener("click", () => {
-  accInput.innerHTML = "";
-  if (current !== undefined) {
+  accInput.innerHTML += curInput.innerHTML;
+  if (computer !== undefined && current !== undefined) {
     if (lastOp === "add") {
       computer = parseFloat(computer) + current;
     } else if (lastOp === "subtract") {
@@ -161,11 +161,11 @@ equals.addEventListener("click", () => {
     } else if (lastOp === "divide") {
       computer = parseFloat(computer) / current;
     }
+    curInput.innerHTML = computer;
+    current = computer;
+    console.log("computer: " + computer + "| current: " + current);
+    computer = [];
   }
-  curInput.innerHTML = computer;
-  current = computer;
-  console.log("computer: " + computer + "| current: " + current);
-  computer = [];
 });
 
 //commit test
